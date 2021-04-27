@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:51:00 by dbegara-         ###   ########.fr       */
+/*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
+/*   Updated: 2021/04/27 19:17:41 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "libps/libps.h"
-#include "libft/libft.h"
+#include "push_swap.h"
 
 char	*ft_strtok_ps(char *str, char delim)
 {
@@ -97,46 +93,18 @@ t_stack	*fill_stack(int argc, char **argv)
 	return (stack);
 }
 
-int		main(int argc, char **argv)
+int		check_order(t_stack *stack)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	int		num;
 
-	if (argc < 2)
+	num = INT_MIN;
+	while(stack)
 	{
-		write(1, "Error\n", 6);
-		return (0);
+		if (stack->num > num)
+			num = stack->num;
+		else
+			return (0);
+		stack = stack->next;
 	}
-	stack_a = fill_stack(argc, argv);
-	stack_b = NULL;
-	//ft_stkswap(stack_a);
-	//ft_stkdel_front(&stack_a);
-	//ft_stkadd_front(&stack_a, ft_stknew(4));
-	//ft_stkdel_back(&stack_a);
-	ft_stkpush(&stack_b, &stack_a);
-	ft_stkrotate(&stack_a);
-	ft_stkrotate_rev(&stack_a);
-	printf("\nStack A | Stack B\n");
-	printf("_________________\n\n");
-	t_stack *tmp_a = stack_a;
-	t_stack	*tmp_b = stack_b;
-	while (1)
-	{	
-		if (tmp_a)
-		{
-			printf("%d   ", tmp_a->num);
-			tmp_a = tmp_a->next;
-		}
-		else if (!tmp_b)
-			break;
-		if (tmp_b)
-		{
-			printf("     %d   ", tmp_b->num);
-			tmp_b = tmp_b->next;
-		}
-		printf("\n\n");
-	}
-	ft_stkclear(&stack_a);
-	system("leaks checker");
-	return (0);
+	return (1);
 }
