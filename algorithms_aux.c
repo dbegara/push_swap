@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:33:47 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/28 13:47:52 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:58:46 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,41 @@ int		ft_abs(int num)
 	return (num);
 }
 
-int		smlr_elem_pos(t_stack *stk, int *exclude)
+int		bigr_elem_pos(t_stack *stk, int *exclude)
 {
-	int	smlr;
+	int	bigr;
 	int	i;
 	int	pos;
 
-	smlr = INT_MAX;
+	bigr = INT_MIN;
 	i = 0;
 	while (stk)
 	{
 		i++;
-		if (stk->num < smlr && *exclude != stk->num)
+		if (stk->num > bigr && *exclude != stk->num)
 		{
-			smlr = stk->num;
+			bigr = stk->num;
 			pos = i;
 		}
 		stk = stk->next;
 	}
-	*exclude = smlr;
+	*exclude = bigr;
 	return (pos);
 }
 
-void	frontal_sort(t_stack **stack_a, int num_pos)
+void	frontal_sort(t_stack **stack_a, int num_pos, int stack)
 {
 	while (--num_pos)
 	{
 		ft_stkrotate(stack_a);
-		write(1, "ra\n", 3);
+		if (stack == 1)
+			write(1, "ra\n", 3);
+		else if (stack == 2)
+			write(1, "rb\n", 3);
 	}
 }
 
-void	reverse_sort(t_stack **stack_a, int num_pos)
+void	reverse_sort(t_stack **stack_a, int num_pos, int stack)
 {
 	int		stk_size;
 
@@ -58,21 +61,33 @@ void	reverse_sort(t_stack **stack_a, int num_pos)
 	while (num_pos++ <= stk_size)
 	{
 		ft_stkrotate_rev(stack_a);
-		write(1, "rra\n", 4);
+		if (stack == 1)
+			write(1, "rra\n", 4);
+		else if (stack == 2)
+			write(1, "rrb\n", 4);
 	}
 }
 
 void	move_small(t_stack **stack_a, t_stack **stack_b, int stk_size, int num_pos)
 {
-	if (num_pos <= (stk_size / 2))
-		frontal_sort(stack_a, num_pos);
+	if (num_pos <= (stk_size / 2) || num_pos == 1)
+		frontal_sort(stack_a, num_pos, 1);
 	else
-		reverse_sort(stack_a, num_pos);
-	if (check_order(*stack_a))
+		reverse_sort(stack_a, num_pos, 1);
+	if (check_order(*stack_a) && stk_size > 1)
 		return ;
-	if (stk_size > 1)
-	{
-		ft_stkpush(stack_b, stack_a);
-		write(1, "pb\n", 3);
-	}
+	ft_stkpush(stack_b, stack_a);
+	write(1, "pb\n", 3);
+}
+
+void	move_small_b(t_stack **stack_b, t_stack **stack_a, int stk_size, int num_pos)
+{
+	if (num_pos <= (stk_size / 2) || num_pos == 1)
+		frontal_sort(stack_b, num_pos, 2);
+	else
+		reverse_sort(stack_b, num_pos, 2);
+	if (check_order(*stack_b) && stk_size > 1)
+		return ;
+	ft_stkpush(stack_a, stack_b);
+	write(1, "pa\n", 3);
 }

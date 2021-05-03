@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/29 13:36:49 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/03 17:12:24 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ int		*bubble_sort(int *chunks, int size)
 	int	tmp;
 
 	i = 0;
-	while (i < size - 1)
+	while (i < (size - 1))
 	{
 		j = 0;
-		while (j < size - i - 1)
+		while (j < (size - i - 1))
 		{
-			if (chunks[i] > chunks[i + 1])
+			if (chunks[j] > chunks[j + 1])
 			{
-				tmp = chunks[i];
-				chunks[i] = chunks[i + 1];
-				chunks[i + 1] = tmp;
+				tmp = chunks[j];
+				chunks[j] = chunks[j + 1];
+				chunks[j + 1] = tmp;
 			}
 			j++;
 		}
@@ -81,18 +81,20 @@ int		cmp_chunk_num(int *chunk, int chunk_size, int num)
 	return (0);
 }
 
-int		*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk)
+int		*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk, int size)
 {
 	int	i;
 	int	j;
 	int	*poses;
 
-	poses = malloc(sizeof(int) * chunk_size);
-	i = 0;
+	if (!chunk_size)
+		return (NULL);
+	poses = malloc(4 * chunk_size);
+	i = 1;
 	j = 0;
 	while (stack_a)
 	{
-		if (cmp_chunk_num(chunk, chunk_size, stack_a->num))
+		if (cmp_chunk_num(chunk, size, stack_a->num))
 		{
 			poses[j] = i;
 			j++;
@@ -108,64 +110,47 @@ int		num_to_push(int stk_size, int hold_first, int hold_second)
 	int	first_diff;
 	int	second_diff;
 
-	first_diff = ft_abs((stk_size / 2) / (stk_size - hold_first + 1));
-	second_diff = ft_abs((stk_size / 2) / (stk_size - hold_second + 1));
+	first_diff = ft_abs((stk_size / 2) - (hold_first));
+	second_diff = ft_abs((stk_size / 2) - (hold_second));
 
-	if (first_diff > second_diff)
+	if (first_diff > second_diff || first_diff < 2)
 		return (hold_first);
 	return (hold_second);
 }
 
-int		*push_number(t_stack **stack_a, t_stack **stack_b, int *poses, int chunk_size)
+void	push_number(t_stack **stack_a, t_stack **stack_b, int *poses, int chunk_size)
 {
-	int		*new_poses;
-	int		new_poses_size;
 	int		hold_first;
 	int		hold_second;
 
-	new_poses_size = chunk_size - 1;
 	hold_first = ft_stksize(*stack_a);
 	hold_second = 1;
+
 	while (chunk_size)
 	{
+		chunk_size--;
 		if (poses[chunk_size] < hold_first)
 			hold_first = poses[chunk_size];
 		if (poses[chunk_size] > hold_second)
 			hold_second = poses[chunk_size];
-		chunk_size--;
 	}
-	chunk_size = new_poses_size + 1;
 	hold_first = num_to_push(ft_stksize(*stack_a), hold_first, hold_second);
-
 	move_small(stack_a, stack_b, ft_stksize(*stack_a), hold_first);
-
-	if (new_poses_size)
-	{
-		new_poses = malloc(sizeof(int) * new_poses_size);
-		while (chunk_size)
-		{
-			if (poses[chunk_size] != hold_first)
-			{
-				new_poses[new_poses_size] = poses[chunk_size];
-				new_poses_size--;
-			}
-			chunk_size--;
-		}
-	}
-	else
-		new_poses = NULL;
-	free(poses);
-	return (new_poses);
 }
 
 void	push_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_size, int *chunk)
 {
 	int	*poses;
+	int	size;
 
-	poses = get_num_pos(*stack_a, chunk_size, chunk);
+	size = chunk_size;
+	poses = get_num_pos(*stack_a, chunk_size, chunk, size);
+
 	while (chunk_size)
 	{
-		poses = push_number(stack_a, stack_b, poses, chunk_size);
+		push_number(stack_a, stack_b, poses, chunk_size);
+		free(poses);
+		poses = get_num_pos(*stack_a, chunk_size - 1, chunk, size);
 		chunk_size--;
 	}
 }
@@ -177,18 +162,17 @@ void	new_order_stuff(t_stack **stack_a, t_stack **stack_b, int *chunks)
 	int	actual_chunk;
 
 	stk_size = ft_stksize(*stack_a);
-	chunk_size = ft_sqrt(stk_size) / 2;
-	actual_chunk = 1;
-
+	chunk_size = (stk_size) / (ft_sqrt(stk_size) / 2);
+	actual_chunk = 0;
 	while (1)
 	{
 		if ((stk_size - (actual_chunk * chunk_size)) <= chunk_size)
 		{
-
+			stk_size = stk_size - (chunk_size * actual_chunk);
+			push_chunk(stack_a, stack_b, stk_size, chunks + (chunk_size * actual_chunk));
 			break;
 		}
-
-
+		push_chunk(stack_a, stack_b, chunk_size, chunks + (chunk_size * actual_chunk));
 		actual_chunk++;
 	}
 
@@ -208,20 +192,19 @@ int	main(int argc, char **argv)
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
 	chunks = order_stack(stack_a);
-
+	
 	if (ft_stksize(stack_a) == 3)
 		ironman_3(&stack_a, &stack_b);
 	else
-		super_sort(&stack_a, &stack_b);
-		//new_order_stuff(&stack_a, &stack_b, chunks);
-	t_stack *tmp = stack_a;
-	while (tmp)
 	{
-		printf("%d\n", tmp->num);
-		tmp = tmp->next;
+		new_order_stuff(&stack_a, &stack_b, chunks);
+		super_sort(&stack_a, &stack_b);
 	}
+
+	free(chunks);
 	ft_stkclear(&stack_a);
 	ft_stkclear(&stack_b);
-	//system("leaks checker");
+	//system("leaks push_swap");
+	
 	return (0);
 }
