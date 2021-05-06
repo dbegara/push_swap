@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/03 17:10:08 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/06 15:54:49 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include "libps/libps.h"
 # include "libft/libft.h"
+# include "gnl/gnl.h"
 # include <limits.h>
 
 char	*ft_strtok_ps(char *str, char delim);

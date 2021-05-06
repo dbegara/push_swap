@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/03 17:12:24 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/06 15:41:16 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,12 @@ int	main(int argc, char **argv)
 		new_order_stuff(&stack_a, &stack_b, chunks);
 		super_sort(&stack_a, &stack_b);
 	}
-
+	t_stack *tmp = stack_a;
+	while (tmp)
+	{
+		printf("%d\n", tmp->num);
+		tmp = tmp->next;
+	}
 	free(chunks);
 	ft_stkclear(&stack_a);
 	ft_stkclear(&stack_b);

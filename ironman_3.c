@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:59:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/28 14:14:09 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/06 15:39:52 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ void	ironman_3(t_stack **stack_a, t_stack **stack_b)
 {
 	if (check_order(*stack_a))
 		return ;
+	if ((ark_pos(*stack_a, (*stack_a)->num)) == 2)
+	{
+		ft_stkrotate(stack_a);
+		write(1, "ra\n", 3);
+		ft_stkswap(*stack_a);
+		write(1, "sa\n", 3);
+		ft_stkrotate_rev(stack_a);
+		write(1, "rra\n", 4);
+	}
 	if ((ark_pos(*stack_a, (*stack_a)->num)) == 0)
 	{
 		ft_stkrotate(stack_a);
