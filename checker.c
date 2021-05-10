@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:40:42 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/06 19:06:26 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:38:26 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	parse_arg_2(char *line, t_stack **stack_a, t_stack **stack_b)
 	{
 		write(1, "Error\n", 6);
 		exit (0);
-	}
-		
+	}	
 }
 
 void	parse_arg(char *line, t_stack **stack_a, t_stack **stack_b)
@@ -75,8 +74,7 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
-
-	while (get_next_line(1, &line))
+	while (get_next_line(0, &line))
 	{
 		parse_arg(line, &stack_a, &stack_b);
 		free(line);

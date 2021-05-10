@@ -6,15 +6,15 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:59:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/06 15:39:52 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:36:45 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ark_pos(t_stack *stack_a, int num)
+int	ark_pos(t_stack *stack_a, int num)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack_a)
@@ -23,7 +23,20 @@ int		ark_pos(t_stack *stack_a, int num)
 			i++;
 		stack_a = stack_a->next;
 	}
-	return(i);
+	return (i);
+}
+
+void	ironman_3_aux(t_stack **stack_a, t_stack **stack_b)
+{
+	if ((ark_pos(*stack_a, (*stack_a)->next->num)) == 0)
+	{
+		ft_stkrotate_rev(stack_a);
+		write(1, "rra\n", 4);
+		return ;
+	}
+	ft_stkswap(*stack_a);
+	write(1, "sa\n", 3);
+	ironman_3(stack_a, stack_b);
 }
 
 void	ironman_3(t_stack **stack_a, t_stack **stack_b)
@@ -45,15 +58,5 @@ void	ironman_3(t_stack **stack_a, t_stack **stack_b)
 		write(1, "ra\n", 3);
 	}
 	if ((ark_pos(*stack_a, (*stack_a)->num)) == 1)
-	{
-		if ((ark_pos(*stack_a, (*stack_a)->next->num)) == 0)
-		{
-			ft_stkrotate_rev(stack_a);
-			write(1, "rra\n", 4);
-			return ;
-		}
-		ft_stkswap(*stack_a);
-		write(1, "sa\n", 3);
-		ironman_3(stack_a, stack_b);
-	}
+		ironman_3_aux(stack_a, stack_b);
 }

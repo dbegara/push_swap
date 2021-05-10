@@ -6,20 +6,13 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:33:47 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/03 17:58:46 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:15:32 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_abs(int num)
-{
-	if (num < 0)
-	 	num = num * -1;
-	return (num);
-}
-
-int		bigr_elem_pos(t_stack *stk, int *exclude)
+int	bigr_elem_pos(t_stack *stk, int *exclude)
 {
 	int	bigr;
 	int	i;
@@ -68,19 +61,19 @@ void	reverse_sort(t_stack **stack_a, int num_pos, int stack)
 	}
 }
 
-void	move_small(t_stack **stack_a, t_stack **stack_b, int stk_size, int num_pos)
+void	move_small(t_stack **stack_a, t_stack **stack_b,
+		int stk_size, int num_pos)
 {
 	if (num_pos <= (stk_size / 2) || num_pos == 1)
 		frontal_sort(stack_a, num_pos, 1);
 	else
 		reverse_sort(stack_a, num_pos, 1);
-	if (check_order(*stack_a) && stk_size > 1)
-		return ;
 	ft_stkpush(stack_b, stack_a);
 	write(1, "pb\n", 3);
 }
 
-void	move_small_b(t_stack **stack_b, t_stack **stack_a, int stk_size, int num_pos)
+void	move_small_b(t_stack **stack_b, t_stack **stack_a,
+		int stk_size, int num_pos)
 {
 	if (num_pos <= (stk_size / 2) || num_pos == 1)
 		frontal_sort(stack_b, num_pos, 2);

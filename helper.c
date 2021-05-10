@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/27 19:17:41 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 15:31:27 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strtok_ps(char *str, char delim)
 {
-	while(*str)
+	while (*str)
 	{
 		if (*str == delim)
 		{
@@ -30,7 +30,7 @@ char	*ft_strtok_ps(char *str, char delim)
 	return (0);
 }
 
-int		ft_atoi(char *num)
+int	ft_atoi(char *num)
 {
 	int		new_num;
 	int		neg;
@@ -54,7 +54,7 @@ int		ft_atoi(char *num)
 
 void	fill_stack_loop(int i, int argc, t_stack **stack, char **argv)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = argv[i];
 	if ((tmp = ft_strtok_ps(tmp, ' ')) != 0)
@@ -93,12 +93,12 @@ t_stack	*fill_stack(int argc, char **argv)
 	return (stack);
 }
 
-int		check_order(t_stack *stack)
+int	check_order(t_stack *stack)
 {
 	int		num;
 
 	num = INT_MIN;
-	while(stack)
+	while (stack)
 	{
 		if (stack->num > num)
 			num = stack->num;
