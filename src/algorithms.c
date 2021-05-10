@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:32:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 15:27:38 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 19:17:38 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	magic_move(t_stack **stack_a, t_stack **stack_b, int stk_size)
 {
 	int		bigr_num_pos;
 	int		smlr_num_pos;
-	int		smlr_diff;
-	int		bigr_diff;
 	int		*exclude;
 
 	exclude = malloc(sizeof(int));

@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/06 15:54:49 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 19:11:46 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "libps/libps.h"
-# include "libft/libft.h"
-# include "gnl/gnl.h"
+# include "../libs/libps/libps.h"
+# include "../libs/libft/libft.h"
+# include "../libs/gnl/gnl.h"
 # include <limits.h>
 
 char	*ft_strtok_ps(char *str, char delim);
 int		ft_atoi(char *num);
-void	fill_stack_loop(int i, int argc, t_stack **stack, char **argv);
+void	fill_stack_loop(int i, t_stack **stack, char **argv);
 t_stack	*fill_stack(int argc, char **argv);
 int		check_order(t_stack *stack);
 int		ft_abs(int num);

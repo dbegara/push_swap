@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 15:31:27 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 19:12:13 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_atoi(char *num)
 	return (new_num);
 }
 
-void	fill_stack_loop(int i, int argc, t_stack **stack, char **argv)
+void	fill_stack_loop(int i, t_stack **stack, char **argv)
 {
 	char	*tmp;
 
@@ -78,16 +78,14 @@ void	fill_stack_loop(int i, int argc, t_stack **stack, char **argv)
 
 t_stack	*fill_stack(int argc, char **argv)
 {
-	int		num;
 	t_stack	*stack;
-	char	*tmp;
 	int		i;
 
 	stack = 0;
 	i = 1;
 	while (i < argc)
 	{
-		fill_stack_loop(i, argc, &stack, argv);
+		fill_stack_loop(i, &stack, argv);
 		i++;
 	}
 	return (stack);
