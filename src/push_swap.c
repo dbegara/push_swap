@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 14:06:40 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/10 19:43:15 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	push_number(t_stack **stack_a, t_stack **stack_b, int *poses, int chunk_siz
 	int		hold_second;
 
 	hold_first = ft_stksize(*stack_a);
-	hold_second = INT_MIN;
+	hold_second = 1;
 
 	while (chunk_size)
 	{
