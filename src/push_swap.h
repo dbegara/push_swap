@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:11:46 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/11 17:41:58 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../libs/libps/libps.h"
 # include "../libs/libft/libft.h"
+# include "../libs/libps/libps.h"
 # include "../libs/gnl/gnl.h"
 # include <limits.h>
 
