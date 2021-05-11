@@ -6,7 +6,7 @@
 /*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 23:12:11 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/11 23:57:53 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,12 +154,14 @@ void	push_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_size, int *chunk
 	}
 }
 
-void	new_order_stuff(t_stack **stack_a, t_stack **stack_b, int *chunks)
+void	new_order_stuff(t_stack **stack_a, t_stack **stack_b)
 {
+	int	*chunks;
 	int	stk_size;
 	int	chunk_size;
 	int	actual_chunk;
 
+	chunks = order_stack(*stack_a);
 	stk_size = ft_stksize(*stack_a);
 	chunk_size = (stk_size) / (ft_sqrt(stk_size) / 2);
 	actual_chunk = 0;
@@ -174,14 +176,14 @@ void	new_order_stuff(t_stack **stack_a, t_stack **stack_b, int *chunks)
 		push_chunk(stack_a, stack_b, chunk_size, chunks + (chunk_size * actual_chunk));
 		actual_chunk++;
 	}
-
+	super_sort(stack_a, stack_b);
+	free(chunks);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		*chunks;
 
 	if (argc < 2)
 	{
@@ -190,19 +192,12 @@ int	main(int argc, char **argv)
 	}
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
-	chunks = order_stack(stack_a);
 	
 	if (ft_stksize(stack_a) == 3 && !check_order(stack_a))
 		ironman_3(&stack_a);
 	else if (ft_stksize(stack_a) > 1 && !check_order(stack_a))
-	{
-		new_order_stuff(&stack_a, &stack_b, chunks);
-		super_sort(&stack_a, &stack_b);
-	}
-	free(chunks);
+		new_order_stuff(&stack_a, &stack_b);
 	ft_stkclear(&stack_a);
 	ft_stkclear(&stack_b);
-	//system("leaks push_swap");
-	
 	return (0);
 }
