@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:43:15 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/11 23:12:11 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ int	main(int argc, char **argv)
 	chunks = order_stack(stack_a);
 	
 	if (ft_stksize(stack_a) == 3 && !check_order(stack_a))
-		ironman_3(&stack_a, &stack_b);
+		ironman_3(&stack_a);
 	else if (ft_stksize(stack_a) > 1 && !check_order(stack_a))
 	{
 		new_order_stuff(&stack_a, &stack_b, chunks);

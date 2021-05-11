@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ironman_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:59:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 15:36:45 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/11 23:12:50 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,46 @@ int	ark_pos(t_stack *stack_a, int num)
 	return (i);
 }
 
-void	ironman_3_aux(t_stack **stack_a, t_stack **stack_b)
+int	get_combi(t_stack *stack_a)
 {
-	if ((ark_pos(*stack_a, (*stack_a)->next->num)) == 0)
-	{
-		ft_stkrotate_rev(stack_a);
-		write(1, "rra\n", 4);
-		return ;
-	}
-	ft_stkswap(*stack_a);
-	write(1, "sa\n", 3);
-	ironman_3(stack_a, stack_b);
+	int		first;
+	int		second;
+	int		third;
+
+	first = ark_pos(stack_a, stack_a->num);
+	second = ark_pos(stack_a, stack_a->next->num);
+	third = ark_pos(stack_a, stack_a->next->next->num);
+	if (first == 1 && second == 2 && third == 0)
+		return (1);
+	if (first == 0 && second == 1 && third == 2)
+		return (2);
+	if (first == 0 && second == 2 && third == 1)
+		return (3);
+	if (first == 2 && second == 0 && third == 1)
+		return (4);
+	return (5);
 }
 
-void	ironman_3(t_stack **stack_a, t_stack **stack_b)
+void	ironman_3(t_stack **stack_a)
 {
+	int combi;
+
 	if (check_order(*stack_a))
 		return ;
-	if ((ark_pos(*stack_a, (*stack_a)->num)) == 2)
+	combi = get_combi(*stack_a);
+	if (combi < 3 || combi == 4)
 	{
-		ft_stkrotate(stack_a);
-		write(1, "ra\n", 3);
 		ft_stkswap(*stack_a);
 		write(1, "sa\n", 3);
+	}
+	if (combi == 2 || combi == 5)
+	{
 		ft_stkrotate_rev(stack_a);
 		write(1, "rra\n", 4);
 	}
-	if ((ark_pos(*stack_a, (*stack_a)->num)) == 0)
+	if (combi == 3 || combi == 4)
 	{
 		ft_stkrotate(stack_a);
 		write(1, "ra\n", 3);
 	}
-	if ((ark_pos(*stack_a, (*stack_a)->num)) == 1)
-		ironman_3_aux(stack_a, stack_b);
 }

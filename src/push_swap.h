@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 17:41:58 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/11 23:11:58 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	reverse_sort(t_stack **stack_a, int num_pos, int stack);
 void	move_small(t_stack **stack_a, t_stack **stack_b, int stk_size, int num_pos);
 void	move_small_b(t_stack **stack_b, t_stack **stack_a, int stk_size, int num_pos);
 void	super_sort(t_stack **stack_a, t_stack **stack_b);
-void	ironman_3(t_stack **stack_a, t_stack **stack_b);
+void	ironman_3(t_stack **stack_a);
 
 #endif
