@@ -6,7 +6,7 @@
 #    By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 18:54:58 by dbegara-          #+#    #+#              #
-#    Updated: 2021/05/12 15:59:16 by dbegara-         ###   ########.fr        #
+#    Updated: 2021/05/12 18:40:40 by dbegara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,9 +68,7 @@ $(LIBPS):
 print:
 	echo $(CHECKER_OBJ)
 
-re: 
-	make fclean 
-	make all
+re: fclean all
 
 fclean: clean
 	@$(RM) -rv $(BIN_DIR)
@@ -79,7 +77,7 @@ fclean: clean
 	make fclean -C $(LIBPS_DIR)
 
 clean:
-	@$(RM) -rv $(OBJ_DIR)
+	@$(RM) -frv $(OBJ_DIR)*
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(GNL_DIR)
 	make clean -C $(LIBPS_DIR)

@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/12 17:25:18 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:35:54 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int		cmp_chunk_num(int *chunk, int chunk_size, int num)
 	return (0);
 }
 
-// Resulta que size == chunk_size solo la primera vuelta, size se mantiene mientras que chunk_size va disminuyendo 
-// La idea es que place_in_ring haga uso de esta función 100 POR 100 REUSABILIDAD!!!!
 int		*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk, int size)
 {
 	int	i;
@@ -112,8 +110,8 @@ int		num_to_push(int stk_size, int hold_first, int hold_second)
 	int	first_diff;
 	int	second_diff;
 
-	first_diff = ft_abs((stk_size / 2) - (hold_first));
-	second_diff = ft_abs((stk_size / 2) - (hold_second));
+	first_diff = ft_abs((stk_size / 2) / (stk_size - hold_first + 1));
+	second_diff = ft_abs((stk_size / 2) / (stk_size - hold_second + 1));
 
 	if (first_diff > second_diff || first_diff < 2)
 		return (hold_first);
@@ -198,7 +196,7 @@ int	main(int argc, char **argv)
 	stk_size = ft_stksize(stack_a);
 	if (stk_size == 3 && !check_order(stack_a))
 		ironman_3(&stack_a);
-	else if (stk_size == 5 && !check_order(stack_a))
+	else if (((stk_size) / (ft_sqrt(stk_size) / 2) == stk_size) && !check_order(stack_a))
 		rocky_5(&stack_a, &stack_b);
 	else if (stk_size > 1 && !check_order(stack_a))
 		new_order_stuff(&stack_a, &stack_b);

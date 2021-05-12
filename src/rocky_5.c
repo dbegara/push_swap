@@ -6,20 +6,11 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 23:50:02 by davidbegara       #+#    #+#             */
-/*   Updated: 2021/05/12 17:10:32 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:01:35 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	punch_numbers(t_stack **stack_a, t_stack **stack_b)
-{
-	while (ft_stksize(*stack_a) > 3)
-	{
-		ft_stkpush(stack_b, stack_a);
-		write(1, "pb\n", 3);
-	}
-}
 
 t_neighbours	migthy_mick(t_stack *stack, int num)
 {
@@ -68,30 +59,37 @@ void	place_in_ring(t_stack **stack, t_neighbours neighbours, int stk_num)
 	}
 }
 
-void	knockout(t_stack **stack, int stk_size)
+t_num	get_smlst_num(t_stack **stack)
 {
-	int		smlr;
+	t_num	smlst;
 	int		i;
-	int		j;
 	t_stack	*tmp;
 
-	smlr = INT_MAX;
+	smlst.num = INT_MAX;
 	tmp = *stack;
 	i = 1;
-	j = 0;
+	smlst.pos = 0;
 	while (tmp)
 	{
-		if (smlr >= tmp->num)
+		if (smlst.num >= tmp->num)
 		{
-			smlr = tmp->num;
-			j = i;
+			smlst.num = tmp->num;
+			smlst.pos = i;
 		}
 		tmp = tmp->next;
 		i++;
 	}
-	while((*stack)->num != smlr)
+	return (smlst);
+}
+
+void	knockout(t_stack **stack, int stk_size)
+{
+	t_num	smlst;
+
+	smlst = get_smlst_num(stack);
+	while((*stack)->num != smlst.num)
 	{
-		if ((j - 1) <= (stk_size / 2))
+		if ((smlst.pos - 1) <= (stk_size / 2))
 		{
 			ft_stkrotate(stack);
 			write(1, "ra\n", 3);
@@ -108,7 +106,11 @@ void	rocky_5(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
-	punch_numbers(stack_a, stack_b);
+	while (ft_stksize(*stack_a) > 3)
+	{
+		ft_stkpush(stack_b, stack_a);
+		write(1, "pb\n", 3);
+	}
 	ironman_3(stack_a);
 	while (*stack_b)
 	{

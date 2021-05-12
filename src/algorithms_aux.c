@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:33:47 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/12 17:26:40 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:01:55 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	move_small(t_stack **stack_a, t_stack **stack_b,
 		frontal_sort(stack_a, num_pos, 1);
 	else
 		reverse_sort(stack_a, num_pos, 1);
-	//place_in_ring(stack_b, migthy_mick(*stack_b, (*stack_a)->num), 2);
 	ft_stkpush(stack_b, stack_a);
 	write(1, "pb\n", 3);
 }

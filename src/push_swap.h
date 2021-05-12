@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/12 17:22:45 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:27:40 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef	struct	s_neighbours {
 	int	smlr;
 	int	smlr_pose;
 }				t_neighbours;
+
+typedef	struct	s_num
+{
+	int	num;
+	int	pos;
+}				t_num;
+
 
 char			*ft_strtok_ps(char *str, char delim);
 int				ft_atoi(char *num);
