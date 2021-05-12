@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
+/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 23:57:53 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/12 17:25:18 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int		cmp_chunk_num(int *chunk, int chunk_size, int num)
 	return (0);
 }
 
+// Resulta que size == chunk_size solo la primera vuelta, size se mantiene mientras que chunk_size va disminuyendo 
+// La idea es que place_in_ring haga uso de esta función 100 POR 100 REUSABILIDAD!!!!
 int		*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk, int size)
 {
 	int	i;
@@ -89,7 +91,7 @@ int		*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk, int size)
 
 	if (!chunk_size)
 		return (NULL);
-	poses = malloc(4 * chunk_size);
+	poses = ft_calloc(chunk_size, sizeof(int));
 	i = 1;
 	j = 0;
 	while (stack_a)
@@ -149,7 +151,7 @@ void	push_chunk(t_stack **stack_a, t_stack **stack_b, int chunk_size, int *chunk
 	{
 		push_number(stack_a, stack_b, poses, chunk_size);
 		free(poses);
-		poses = get_num_pos(*stack_a, chunk_size - 1, chunk, size);
+		poses = get_num_pos(*stack_a, chunk_size, chunk, size);
 		chunk_size--;
 	}
 }
@@ -184,6 +186,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		stk_size;
 
 	if (argc < 2)
 	{
@@ -192,10 +195,12 @@ int	main(int argc, char **argv)
 	}
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
-	
-	if (ft_stksize(stack_a) == 3 && !check_order(stack_a))
+	stk_size = ft_stksize(stack_a);
+	if (stk_size == 3 && !check_order(stack_a))
 		ironman_3(&stack_a);
-	else if (ft_stksize(stack_a) > 1 && !check_order(stack_a))
+	else if (stk_size == 5 && !check_order(stack_a))
+		rocky_5(&stack_a, &stack_b);
+	else if (stk_size > 1 && !check_order(stack_a))
 		new_order_stuff(&stack_a, &stack_b);
 	ft_stkclear(&stack_a);
 	ft_stkclear(&stack_b);

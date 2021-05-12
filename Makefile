@@ -6,7 +6,7 @@
 #    By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 18:54:58 by dbegara-          #+#    #+#              #
-#    Updated: 2021/05/11 19:27:29 by dbegara-         ###   ########.fr        #
+#    Updated: 2021/05/12 15:59:16 by dbegara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CHECKER_SRC		=	checker.c
 CHECKER_OBJ		:= 	$(addprefix $(OBJ_DIR), $(CHECKER_SRC:.c=.o))
 CHECKER_SRC		:=	$(addprefix $(SRC_DIR), $(CHECKER_SRC))
 
-PUSH_SRC		=	algorithms_aux.c algorithms.c ironman_3.c push_swap.c
+PUSH_SRC		=	algorithms_aux.c algorithms.c ironman_3.c rocky_5.c push_swap.c
 PUSH_OBJ		:= 	$(addprefix $(OBJ_DIR), $(PUSH_SRC:.c=.o))
 PUSH_SRC		:=	$(addprefix $(SRC_DIR), $(PUSH_SRC))
 
@@ -68,7 +68,9 @@ $(LIBPS):
 print:
 	echo $(CHECKER_OBJ)
 
-re: fclean all
+re: 
+	make fclean 
+	make all
 
 fclean: clean
 	@$(RM) -rv $(BIN_DIR)
