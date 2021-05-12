@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/12 20:27:40 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/13 00:49:02 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int				*get_num_pos(t_stack *stack_a, int chunk_size, int *chunk, int size);
 void			place_in_ring(t_stack **stack, t_neighbours neighbours, int stk_num);
 t_neighbours	migthy_mick(t_stack *stack, int num);
 void			rocky_5(t_stack **stack_a, t_stack **stack_b);
+void			move_to_b(t_stack **stack_a, t_stack **stack_b, int num);
 
 #endif
