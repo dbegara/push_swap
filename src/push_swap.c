@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
+/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/13 00:59:37 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/13 18:48:48 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,6 @@ void	push_number(t_stack **stack_a, t_stack **stack_b, int *poses, int chunk_siz
 			hold_second = poses[chunk_size];
 	}
 	hold_first = num_to_push(ft_stksize(*stack_a), hold_first, hold_second);
-	
-
-	//Implementación en infinity.c
-	//move_to_b(stack_a, stack_b, hold_first);
 	move_small(stack_a, stack_b, ft_stksize(*stack_a), hold_first);
 }
 

@@ -3,30 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+         #
+#    By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 18:54:58 by dbegara-          #+#    #+#              #
-#    Updated: 2021/05/13 00:50:00 by davidbegara      ###   ########.fr        #
+#    Updated: 2021/05/13 18:48:56 by dbegara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_DIR			=	src/
-OBJ_DIR			=	obj/
+OBJ_DIR			=	obj
 BIN_DIR			=	bin
 LIBFT_DIR		=	libs/libft
 GNL_DIR			=	libs/gnl
 LIBPS_DIR		=	libs/libps
 
 COMMON_SRC		=	helper.c
-COMMON_OBJ		:= 	$(addprefix $(OBJ_DIR), $(COMMON_SRC:.c=.o))
+COMMON_OBJ		:= 	$(addprefix $(OBJ_DIR)/, $(COMMON_SRC:.c=.o))
 COMMON_SRC		:=	$(addprefix $(SRC_DIR), $(COMMON_SRC))
 
 CHECKER_SRC		=	checker.c
-CHECKER_OBJ		:= 	$(addprefix $(OBJ_DIR), $(CHECKER_SRC:.c=.o))
+CHECKER_OBJ		:= 	$(addprefix $(OBJ_DIR)/, $(CHECKER_SRC:.c=.o))
 CHECKER_SRC		:=	$(addprefix $(SRC_DIR), $(CHECKER_SRC))
 
-PUSH_SRC		=	algorithms_aux.c algorithms.c ironman_3.c rocky_5.c infinity.c push_swap.c
-PUSH_OBJ		:= 	$(addprefix $(OBJ_DIR), $(PUSH_SRC:.c=.o))
+PUSH_SRC		=	algorithms_aux.c algorithms.c ironman_3.c rocky_5.c push_swap.c
+PUSH_OBJ		:= 	$(addprefix $(OBJ_DIR)/, $(PUSH_SRC:.c=.o))
 PUSH_SRC		:=	$(addprefix $(SRC_DIR), $(PUSH_SRC))
 
 
@@ -50,7 +50,7 @@ $(PUSH) : $(LIBFT) $(GNL) $(LIBPS) $(OBJ) $(BIN_DIR)
 $(CHECKER) : $(LIBFT) $(GNL) $(LIBPS) $(OBJ) $(BIN_DIR)
 	gcc -L$(LIBFT_DIR) -lft -L$(LIBPS_DIR) -lps -L$(GNL_DIR) -lgnl -o $(CHECKER) $(CHECKER_OBJ) $(COMMON_OBJ)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)%.c $(OBJ_DIR)
 	gcc -c $< -o $@
 
 $(BIN_DIR) $(OBJ_DIR):
@@ -77,7 +77,7 @@ fclean: clean
 	make fclean -C $(LIBPS_DIR)
 
 clean:
-	@$(RM) -frv $(OBJ_DIR)*
+	@$(RM) -rv $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(GNL_DIR)
 	make clean -C $(LIBPS_DIR)
