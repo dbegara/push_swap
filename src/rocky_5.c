@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 23:50:02 by davidbegara       #+#    #+#             */
-/*   Updated: 2021/05/12 20:01:35 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 17:46:38 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_neighbours	migthy_mick(t_stack *stack, int num)
 {
-	t_neighbours neighbours;
-	t_stack	*tmp;
-	int		*pose_tmp;
+	t_neighbours	neighbours;
+	t_stack			*tmp;
+	int				*pose_tmp;
 
 	neighbours.smlr = INT_MIN;
 	neighbours.bigr = INT_MAX;
@@ -45,14 +45,16 @@ void	place_in_ring(t_stack **stack, t_neighbours neighbours, int stk_num)
 	stk_size = ft_stksize(*stack);
 	if (neighbours.bigr_pose)
 	{
-		if ((neighbours.bigr_pose - 1) <= (stk_size / 2) || neighbours.bigr_pose == 1)
+		if ((neighbours.bigr_pose - 1)
+			<= (stk_size / 2) || neighbours.bigr_pose == 1)
 			frontal_sort(stack, neighbours.bigr_pose, stk_num);
 		else
 			reverse_sort(stack, neighbours.bigr_pose, stk_num);
 	}
 	else if (neighbours.smlr_pose)
 	{
-		if ((neighbours.smlr_pose - 1) <= (stk_size / 2) && neighbours.smlr_pose != 1)
+		if ((neighbours.smlr_pose - 1)
+			<= (stk_size / 2) && neighbours.smlr_pose != 1)
 			frontal_sort(stack, neighbours.smlr_pose - 1, stk_num);
 		else
 			reverse_sort(stack, neighbours.smlr_pose + 1, stk_num);
@@ -87,7 +89,7 @@ void	knockout(t_stack **stack, int stk_size)
 	t_num	smlst;
 
 	smlst = get_smlst_num(stack);
-	while((*stack)->num != smlst.num)
+	while ((*stack)->num != smlst.num)
 	{
 		if ((smlst.pos - 1) <= (stk_size / 2))
 		{

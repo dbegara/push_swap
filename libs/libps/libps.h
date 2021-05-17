@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 18:54:23 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:48:40 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:51:48 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include <stdlib.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				num;
 	struct s_stack	*next;
 }				t_stack;
-
 t_stack	*ft_stknew(int content);
 t_stack	*ft_stklast(t_stack *stk);
 int		ft_stksize(t_stack *stk);
@@ -33,6 +32,4 @@ void	ft_stkclear(t_stack **stk);
 void	ft_stkpush(t_stack **dst, t_stack **src);
 void	ft_stkrotate(t_stack **stack);
 void	ft_stkrotate_rev(t_stack **stack);
-
-
 #endif

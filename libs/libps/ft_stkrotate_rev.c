@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 20:45:02 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:49:30 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:50:16 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stkrotate_rev(t_stack **stack)
 {
-	int		tmp;
+	int	tmp;
 
 	tmp = (ft_stklast(*stack))->num;
 	ft_stkdel_back(stack);

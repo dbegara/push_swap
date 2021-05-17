@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 20:09:45 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:11:07 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:47:47 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_stkclear(t_stack **stk)
 {
-	t_stack		*element;
-	t_stack		*tmp;
+	t_stack	*element;
+	t_stack	*tmp;
 
 	element = *stk;
 	while (element)

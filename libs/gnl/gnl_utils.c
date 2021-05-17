@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:53:12 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 17:27:06 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:03:07 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_cpybuffer(char *buffer, char *line)
 	return (new);
 }
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char		*dstc;
 	const char	*srcc;

@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 19:59:06 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:08:36 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:48:30 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stkdel_back(t_stack **stack)
 {
-	t_stack		*tmp;
+	t_stack	*tmp;
 
 	if (!stack)
 		return ;
@@ -27,7 +27,7 @@ void	ft_stkdel_back(t_stack **stack)
 		return ;
 	}
 	tmp = *stack;
-	while(tmp->next->next)
+	while (tmp->next->next)
 	{
 		tmp = tmp->next;
 	}

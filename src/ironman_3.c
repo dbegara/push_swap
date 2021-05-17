@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ironman_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
+/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:59:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 23:12:50 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/17 16:00:47 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_combi(t_stack *stack_a)
 
 void	ironman_3(t_stack **stack_a)
 {
-	int combi;
+	int	combi;
 
 	if (check_order(*stack_a))
 		return ;

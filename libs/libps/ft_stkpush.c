@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 17:30:30 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/04/14 20:33:31 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 15:50:11 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stkpush(t_stack **dst, t_stack **src)
 {
-	int		tmp;
+	int	tmp;
 
 	if (!src || !dst)
 		return ;

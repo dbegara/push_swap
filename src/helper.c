@@ -6,7 +6,7 @@
 /*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/11 15:47:37 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:02:02 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,22 @@ void	fill_stack_loop(int i, t_stack **stack, char **argv)
 {
 	char	*tmp;
 
-	tmp = argv[i];
-	if ((tmp = ft_strtok_ps(tmp, ' ')) != 0)
+	tmp = ft_strtok_ps(argv[i], ' ');
+	if (tmp != 0)
 	{
 		if (!*stack)
 			*stack = ft_stknew(ft_atoi(argv[i]));
 		else
 			ft_stkadd_back(stack, ft_stknew(ft_atoi(argv[i])));
 		ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
-		while ((tmp = ft_strtok_ps(tmp, ' ')) != 0)
+		tmp = ft_strtok_ps(tmp, ' ');
+		while (tmp != 0)
 			ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
 	}
+	else if (!*stack)
+		*stack = ft_stknew(ft_atoi(argv[i]));
 	else
-	{
-		if (!*stack)
-			*stack = ft_stknew(ft_atoi(argv[i]));
-		else
-			ft_stkadd_back(stack, ft_stknew(ft_atoi(argv[i])));
-	}
+		ft_stkadd_back(stack, ft_stknew(ft_atoi(argv[i])));
 }
 
 t_stack	*fill_stack(int argc, char **argv)
