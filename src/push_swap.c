@@ -6,11 +6,17 @@
 /*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 14:02:04 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/19 16:21:56 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	error_exit(void)
+{
+	write(1, "Error\n", 6);
+	exit (0);
+}
 
 int	ft_sqrt(int num)
 {

@@ -6,7 +6,7 @@
 /*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 19:15:33 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 12:59:09 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/19 16:21:37 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void			push_chunk(t_stack **stack_a, t_stack **stack_b,
 					int chunk_size, int *chunk);
 int				*order_stack(t_stack *stack);
 int				check_repeated(t_stack *stack_a);
+void			error_exit(void);
 
 #endif

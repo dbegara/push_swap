@@ -6,11 +6,17 @@
 /*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:40:42 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 13:11:00 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/19 16:24:09 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	error_exit(void)
+{
+	write(1, "Error\n", 6);
+	exit (0);
+}
 
 void	parse_arg_2(char *line, t_stack **stack_a, t_stack **stack_b)
 {
@@ -97,7 +103,7 @@ int	main(int argc, char **argv)
 		parse_arg(line, &stack_a, &stack_b);
 		free(line);
 	}
-	if (check_order(stack_a))
+	if (check_order(stack_a) && ft_stksize(stack_b) == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

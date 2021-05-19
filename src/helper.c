@@ -6,7 +6,7 @@
 /*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 14:22:12 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/19 16:22:29 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,14 @@ int	ft_atoi(char *num)
 			neg *= -1;
 		num++;
 	}
+	if (!(*num))
+		error_exit();
 	while (*num && *num != ' ')
 	{
 		i_num *= 10;
 		i_num += *num - 48;
 		if (!ft_isdigit(*num) || (i_num * neg) != (int)(i_num * neg))
-		{
-			write(1, "Error\n", 6);
-			exit (0);
-		}
+			error_exit();
 		num++;
 	}
 	return (i_num * neg);
