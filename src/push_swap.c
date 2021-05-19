@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/17 18:17:57 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:02:04 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,24 @@ void	new_order_stuff(t_stack **stack_a, t_stack **stack_b)
 	free(chunks);
 }
 
+int	check_repeated(t_stack *stack_a)
+{
+	t_stack	*tmp;
+
+	while (stack_a)
+	{
+		tmp = stack_a->next;
+		while (tmp)
+		{
+			if (tmp->num == stack_a->num)
+				return (1);
+			tmp = tmp->next;
+		}
+		stack_a = stack_a->next;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -68,9 +86,9 @@ int	main(int argc, char **argv)
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
 	stk_size = ft_stksize(stack_a);
-	if (stk_size == 3 && !check_order(stack_a))
+	if (stk_size < 4 && stk_size > 1 && !check_order(stack_a))
 		ironman_3(&stack_a);
-	else if (((stk_size) / (ft_sqrt(stk_size) / 2) == stk_size)
+	else if (stk_size > 1 && ((stk_size) / (ft_sqrt(stk_size) / 2) == stk_size)
 		&& !check_order(stack_a))
 		rocky_5(&stack_a, &stack_b);
 	else if (stk_size > 1 && !check_order(stack_a))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:40:42 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/10 15:38:26 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/19 13:11:00 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,24 @@ void	parse_arg(char *line, t_stack **stack_a, t_stack **stack_b)
 		ft_stkrotate(stack_a);
 	else
 		parse_arg_2(line, stack_a, stack_b);
+}
+
+int	check_repeated(t_stack *stack_a)
+{
+	t_stack	*tmp;
+
+	while (stack_a)
+	{
+		tmp = stack_a->next;
+		while (tmp)
+		{
+			if (tmp->num == stack_a->num)
+				return (1);
+			tmp = tmp->next;
+		}
+		stack_a = stack_a->next;
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)

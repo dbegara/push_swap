@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ironman_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:59:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/17 16:00:47 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/19 13:51:46 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	get_combi(t_stack *stack_a)
 	int		second;
 	int		third;
 
+	if (ft_stksize(stack_a) == 2)
+		return (0);
 	first = ark_pos(stack_a, stack_a->num);
 	second = ark_pos(stack_a, stack_a->next->num);
 	third = ark_pos(stack_a, stack_a->next->next->num);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/17 18:02:02 by dbegara-         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:22:12 by davidbegara      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,29 @@ char	*ft_strtok_ps(char *str, char delim)
 
 int	ft_atoi(char *num)
 {
-	int		new_num;
+	long	i_num;
 	int		neg;
 
-	new_num = 0;
+	i_num = 0;
 	neg = 1;
-	if (*num == '-')
+	while (*num == '-' || *num == '+')
 	{
-		neg = -1;
+		if (*num == '-')
+			neg *= -1;
 		num++;
 	}
-	while (ft_isdigit(*num))
+	while (*num && *num != ' ')
 	{
-		new_num *= 10;
-		new_num += *num - 48;
+		i_num *= 10;
+		i_num += *num - 48;
+		if (!ft_isdigit(*num) || (i_num * neg) != (int)(i_num * neg))
+		{
+			write(1, "Error\n", 6);
+			exit (0);
+		}
 		num++;
 	}
-	new_num *= neg;
-	return (new_num);
+	return (i_num * neg);
 }
 
 void	fill_stack_loop(int i, t_stack **stack, char **argv)
@@ -66,7 +71,10 @@ void	fill_stack_loop(int i, t_stack **stack, char **argv)
 		ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
 		tmp = ft_strtok_ps(tmp, ' ');
 		while (tmp != 0)
+		{
 			ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
+			tmp = ft_strtok_ps(tmp, ' ');
+		}
 	}
 	else if (!*stack)
 		*stack = ft_stknew(ft_atoi(argv[i]));
@@ -86,6 +94,12 @@ t_stack	*fill_stack(int argc, char **argv)
 		fill_stack_loop(i, &stack, argv);
 		i++;
 	}
+	if (check_repeated(stack))
+	{
+		ft_stkclear(&stack);
+		write(1, "Error\n", 6);
+		exit (0);
+	}
 	return (stack);
 }
 
@@ -96,7 +110,7 @@ int	check_order(t_stack *stack)
 	num = INT_MIN;
 	while (stack)
 	{
-		if (stack->num > num)
+		if (stack->num >= num)
 			num = stack->num;
 		else
 			return (0);
