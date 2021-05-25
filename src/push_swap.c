@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
+/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:54:24 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 16:21:56 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/25 18:18:39 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,16 @@ int	main(int argc, char **argv)
 	int		stk_size;
 
 	if (argc < 2)
-	{
-		write(1, "Error\n", 6);
 		return (0);
-	}
 	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
 	stk_size = ft_stksize(stack_a);
 	if (stk_size < 4 && stk_size > 1 && !check_order(stack_a))
 		ironman_3(&stack_a);
-	else if (stk_size > 1 && ((stk_size) / (ft_sqrt(stk_size) / 2) == stk_size)
+	else if (stk_size > 3 && ((stk_size) / (ft_sqrt(stk_size) / 2) == stk_size)
 		&& !check_order(stack_a))
 		rocky_5(&stack_a, &stack_b);
-	else if (stk_size > 1 && !check_order(stack_a))
+	else if (stk_size > 3 && !check_order(stack_a))
 		new_order_stuff(&stack_a, &stack_b);
 	ft_stkclear(&stack_a);
 	ft_stkclear(&stack_b);

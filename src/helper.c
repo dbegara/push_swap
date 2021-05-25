@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidbegarabesco <davidbegarabesco@stud    +#+  +:+       +#+        */
+/*   By: dbegara- <dbegara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:41:22 by dbegara-          #+#    #+#             */
-/*   Updated: 2021/05/19 16:22:29 by davidbegara      ###   ########.fr       */
+/*   Updated: 2021/05/25 19:07:27 by dbegara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strtok_ps(char *str, char delim)
 {
+	while (*str == delim)
+		str++;
 	while (*str)
 	{
 		if (*str == delim)
@@ -37,7 +39,9 @@ int	ft_atoi(char *num)
 
 	i_num = 0;
 	neg = 1;
-	while (*num == '-' || *num == '+')
+	while (*num == ' ')
+		num++;
+	if (*num == '-' || *num == '+')
 	{
 		if (*num == '-')
 			neg *= -1;
@@ -60,25 +64,16 @@ void	fill_stack_loop(int i, t_stack **stack, char **argv)
 {
 	char	*tmp;
 
-	tmp = ft_strtok_ps(argv[i], ' ');
-	if (tmp != 0)
-	{
-		if (!*stack)
-			*stack = ft_stknew(ft_atoi(argv[i]));
-		else
-			ft_stkadd_back(stack, ft_stknew(ft_atoi(argv[i])));
-		ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
-		tmp = ft_strtok_ps(tmp, ' ');
-		while (tmp != 0)
-		{
-			ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
-			tmp = ft_strtok_ps(tmp, ' ');
-		}
-	}
-	else if (!*stack)
+	if (!*stack)
 		*stack = ft_stknew(ft_atoi(argv[i]));
 	else
 		ft_stkadd_back(stack, ft_stknew(ft_atoi(argv[i])));
+	tmp = ft_strtok_ps(argv[i], ' ');
+	while (tmp != 0)
+	{
+		ft_stkadd_back(stack, ft_stknew(ft_atoi(tmp)));
+		tmp = ft_strtok_ps(tmp, ' ');
+	}
 }
 
 t_stack	*fill_stack(int argc, char **argv)
